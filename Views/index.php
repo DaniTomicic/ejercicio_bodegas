@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de bodegas</title>
+    <link rel="stylesheet" href="Views/css/style.css">
 </head>
 <body>
     <h1>Gestión de Bodegas</h1>
