@@ -19,6 +19,13 @@ async function obtenerVinos(){
         return null;
     }
 }
+    function guardarEnCache(vino){
+        const arrayVinos = JSON.parse(localStorage.getItem("vinos")) || [];
+        const yaExiste = arrayVinos.some(v => v.id_vino == vino.id_vino);
+
+        if(!yaExiste) arrayVinos.push(vino);
+        localStorage.setItem("vinos", JSON.stringify(arrayVinos));
+    }
 function crearLista(vino){
     const ul = document.getElementById("vinos-list");
     const li = document.createElement("li");
@@ -38,8 +45,8 @@ function crearLista(vino){
     span.className = 'vino-tipo muted';
     span.textContent = vino.tipo;
     strong.textContent = vino.nombre;
-    spanAnio.textContent = vino.anio + " - ";
-    spanAlcohol.textContent = vino.alcohol + "%";
+    spanAnio.textContent = "Año: " + vino.anio + " - ";
+    spanAlcohol.textContent = "Concentración: " + vino.alcohol + "%";
     // Al hacer append chil hay que llamar el mismo numero de ver que se quiera concatenar algo
     div2.appendChild(spanAnio); div2.appendChild(spanAlcohol);
     div.appendChild(strong); div.appendChild(span);
@@ -47,12 +54,22 @@ function crearLista(vino){
     ul.appendChild(li);
 }
 document.addEventListener("DOMContentLoaded",async ()=>{
+    const vinosCache = JSON.parse(localStorage.getItem("vinos"));
+    if(vinosCache){
+        for (const vino of vinosCache) {
+            console.log("Entra en loop de cahce");
+            crearLista(vino);
+        }
+        return;
+    }
     const vinos = await obtenerVinos(); //Se espera una PROMISE
 
     if(vinos && vinos.length > 0){
         // Si hay vinos obtendré del document el nodo padre y con innferHTML o textContent pondré esos dartos
         for(const vino of vinos){
+
             crearLista(vino); 
+            guardarEnCache(vino);
         }
         // Se podria guardar en LocalStorage para no hacer tanta requesta backend
     }else{

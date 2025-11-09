@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="Views/css/style.css">
 </head>
 <body>
-    <h1>Gestión de Bodegas</h1>
-    <p>Este proyecto muestra como hacer una aplicacion web MVC con PHO</p>
-    <p>El objetico es mostrar como realizar una aplicación utilizanod el patrón de diseño</p>
+    <div id="app" class="container">
+        <header id="main-header" class="header">
+            <h1 class="title">Gestión de Bodegas</h1>
+            <p class="subtitle">Este proyecto muestra cómo hacer una aplicación web MVC con PHP</p>
+            <p class="muted">El objetivo es mostrar cómo realizar una aplicación utilizando el patrón de diseño</p>
+        </header>
 
-    <a href="index.php?controller=BodegaController&action=createView">+ Añadir Bodega</a>
+        <nav id="actions" class="actions">
+            <div class="tabs" role="tablist" aria-label="Navegación principal">
+                <a role="tab" class="tab active" href="index.php    ">Bodegas</a>
+                <a role="tab" class="tab" href="Views/vinos/vinos.php">Vinos disponibles</a>
+            </div>
+            <div class="actions-right">
+                <a class="btn btn-primary" href="index.php?controller=BodegaController&action=createView">+ Añadir Bodega</a>
+            </div>
+        </nav>
 
-        <table border="1" cellpadding="8" cellspacing="0">
+        <main>
+            <table id="bodegas-table" class="table">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -32,13 +44,19 @@
                     <td><?= $bodega['email'] ?></td>
                     <td>
                         <!-- Aquí puedes agregar botones para editar/eliminar -->
-                        <a href="index.php?controller=BodegaController&action=verBodega&id=<?= $bodega['id_bodega'] ?>">Entrar</a>
-                        <a href="index.php?controller=BodegaController&action=delete&id=<?= $bodega['id_bodega'] ?>">Eliminar</a>
+                        <a class="link" href="index.php?controller=BodegaController&action=verBodega&id=<?= $bodega['id_bodega'] ?>">Entrar</a>
+                        <a class="link link-danger" href="index.php?controller=BodegaController&action=delete&id=<?= $bodega['id_bodega'] ?>">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+        </main>
+
+        <footer class="footer">
+            <p class="muted">&copy; <?= date('Y') ?> Ejercicio Bodegas</p>
+        </footer>
+    </div>
     
 </body>
 </html>

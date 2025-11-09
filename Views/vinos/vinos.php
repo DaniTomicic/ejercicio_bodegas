@@ -13,11 +13,11 @@
             <p class="subtitle muted">Aquí verás la lista de vinos disponibles. La lista será poblada dinámicamente por tu JS.</p>
         </header>
 
-        <a href="../../index.php?controller=BodegaController&action=index" class="tab active">Volver</a>
+        <a href="/ejercicio_bodegas/index.php?controller=BodegaController&action=index" class="tab active">Volver a Bodegas</a>
 
         <section class="card">
             <div class="list-controls">
-                
+
                 <input id="filter-vinos" class="input" placeholder="Filtrar por nombre">
             </div>
 
